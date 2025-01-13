@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hello Page</title>
+</head>
+<body>
+    <h1>Enter Your Input</h1>
+    <form action="/submit" method="post">
+        <label for="inputField">Input:</label>
+        <input type="text" id="inputField" name="inputField" required>
+        <button type="submit">Submit</button>
+    </form>
+    <h2>Names</h2>
+    <ul>
+        <th:block th:each="name : ${names}">
+            <li th:text="${name}"> </li>
+        </th:block>
+    </ul>
+</body>
+</html>
