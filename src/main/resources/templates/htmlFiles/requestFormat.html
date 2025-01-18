@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task LeakZon</title>
+</head>
+<body>
+    <h1>Welcome!</h1>
+    <form action="/submit" method="post" enctype="multipart/form-data" id="uploadForm">
+        <label for="uploadedFiles">Please choose files to upload</label>
+        <input type="file" id="uploadedFiles" name="uploadedFiles" multiple required>
+        
+        <ul id="fileList"></ul>
+        
+        <button type="submit">Submit</button>
+    </form>
+    
+    <script>
+        document.getElementById("uploadedFiles").addEventListener("change", function(event) {
+            const fileList = event.target.files;
+            const fileListContainer = document.getElementById("fileList");
+            fileListContainer.innerHTML = "";
+    
+            for (let i = 0; i < fileList.length; i++) {
+                const file = fileList[i];
+                
+                const li = document.createElement("li");
+                const fileName = document.createElement("p");
+                fileName.textContent = file.name;
+                
+                const formatLabel = document.createElement("p");
+                formatLabel.textContent = "Choose file format:";
+                const formatInput = document.createElement("input");
+                formatInput.setAttribute("list", "formats");
+                formatInput.setAttribute("name", "formats");
+                formatInput.setAttribute("required", "required");
+    
+                const datalist = document.createElement("datalist");
+                datalist.setAttribute("id", "formats");
+                const csvOption = document.createElement("option");
+                csvOption.value = "CSV";
+                const xlsOption = document.createElement("option");
+                xlsOption.value = "xls";
+                const htmlOption = document.createElement("option");
+                htmlOption.value = "html";
+    
+                datalist.appendChild(csvOption);
+                datalist.appendChild(xlsOption);
+                datalist.appendChild(htmlOption);
+    
+                li.appendChild(fileName);
+                li.appendChild(formatLabel);
+                li.appendChild(formatInput);
+                li.appendChild(datalist);
+                
+                fileListContainer.appendChild(li);
+            }
+        });
+    
+        document.getElementById("uploadForm").addEventListener("submit", function(event) {
+            const fileInput = document.getElementById("uploadedFiles");
+            const fileList = fileInput.files;
+            const fileListContainer = document.getElementById("fileList");
+    
+            if (fileList.length === 0) {
+                alert("Please choose at least one file.");
+                event.preventDefault();
+                return;
+            }
+    
+            const formatInputs = fileListContainer.querySelectorAll("input[type='text']");
+            for (let i = 0; i < formatInputs.length; i++) {
+                if (formatInputs[i].value.trim() === "") {
+                    alert("Please choose a format for all files.");
+                    event.preventDefault();
+                    return;
+                }
+            }
+        });
+    </script>
+    
+</body>
+</html>

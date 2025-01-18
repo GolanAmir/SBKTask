@@ -1,4 +1,4 @@
-package com.assignment.sbk
+package com.SBKAssignment.sbk
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
