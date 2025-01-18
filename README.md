@@ -113,8 +113,6 @@ This Spring Boot web application, developed using Kotlin and Gradle, allows user
 - **Spring Boot Starter Web:** For building the web application.
 - **Spring Boot Starter Data JPA:** For database integration.
 - **H2 Database:** In-memory database for storing data.
-- **Apache POI:** For parsing Excel (XLS) files.
-- **Jsoup:** For parsing HTML files.
 
 
 - **H2 Database Console:**
